@@ -18,10 +18,10 @@ Each point represents profits for three competitors:
 - **Total Max Reward (Green)**: Total market potential
 
 The x-axis shows different parameter combinations:
-- **Inertia Factor**: Market resistance to change (0.65-0.85)
-- **Mean Price**: Average price sensitivity (0.2-0.3)
-- **Price SD**: Price sensitivity variation (0.01-0.05)
-- **Smoothing**: Price smoothing factor (0.01-0.05)
+- **Inertia Factor**: Market resistance to change (0.65,0.75,0.85)
+- **Mean Price**: Average price sensitivity (0.2,0.3)
+- **Price SD**: Price sensitivity variation (0.01,0.05)
+- **Smoothing**: Price smoothing factor (0.01,0.05)
 """)
 
 def process_and_plot(dataset, title):
