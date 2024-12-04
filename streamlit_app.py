@@ -86,7 +86,7 @@ def process_and_plot(dataset, title):
 # Load and process data
 @st.cache_data
 def load_data():
-    return pd.read_csv("data/economic_results.csv")
+    return pd.read_csv("economic_results.csv")
 
 df = load_data()
 
