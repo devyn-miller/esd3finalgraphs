@@ -81,4 +81,4 @@ def process_and_scatter_plot_plotly(csv_file):
 
 # Example usage
 # Replace 'your_file.csv' with the actual file path to your CSV
-process_and_scatter_plot_plotly("/Users/devynmiller/Downloads/Inertia_and_Changing_Inertia_Economic_Results - Inertia_and_Changing_Inertia_Economic_Results.csv")
+process_and_scatter_plot_plotly("Inertia_and_Changing_Inertia_Economic_Results - Inertia_and_Changing_Inertia_Economic_Results.csv")
