@@ -25,9 +25,14 @@ The x-axis shows different parameter combinations:
 """)
 
 def process_and_plot(dataset, title):
-    # Combine parameters for the x-axis labels
-    dataset["Param Combo"] = dataset.apply(
-        lambda row: f"inertia={row['Inertia Factor']}, meanprice={row['Price Sensitivity Mean']}, pricesd={row['Price Sensitivity Std']}, smoothing={row['Smoothing Factor']}",
+    # Create color-coded parameter values for each scenario
+    dataset["Param Values"] = dataset.apply(
+        lambda row: (
+            f"<span style='color: #FF1493'>{row['Inertia Factor']}</span><br>"  # Deep Pink
+            f"<span style='color: #8A2BE2'>{row['Price Sensitivity Mean']}</span><br>"  # Blue Violet
+            f"<span style='color: #787573FF'>{row['Price Sensitivity Std']}</span><br>"  # Dark Orange
+            f"<span style='color: #20B2AA'>{row['Smoothing Factor']}</span>"  # Light Sea Green
+        ),
         axis=1,
     )
 
@@ -64,21 +69,30 @@ def process_and_plot(dataset, title):
         marker=dict(symbol="square", color="green", size=10)
     ))
 
+    # Create parameter legend text with matching colors
+    param_legend = (
+        "<span style='color: #FF1493'>■</span> Inertia Factor (0.65,0.75,0.85)<br>"
+        "<span style='color: #8A2BE2'>■</span> Mean Price (0.2,0.3)<br>"
+        "<span style='color: #787573FF'>■</span> Price SD (0.01,0.05)<br>"
+        "<span style='color: #20B2AA'>■</span> Smoothing (0.01,0.05)"
+    )
+
     # Update layout for better visualization
     fig.update_layout(
         title=title,
         xaxis=dict(
             tickmode='array',
             tickvals=dataset.index,
-            ticktext=dataset["Param Combo"],
-            tickangle=-90,
+            ticktext=dataset["Param Values"],
+            tickangle=0,
             showgrid=True
         ),
         yaxis=dict(title="Profit"),
-        xaxis_title="Parameter Combination",
+        xaxis_title=f"Scenario<br><br>{param_legend}",
         yaxis_title="Profit",
         showlegend=True,
-        height=700
+        height=700,
+        margin=dict(b=200)  # Increased bottom margin to accommodate the legend
     )
 
     return fig
